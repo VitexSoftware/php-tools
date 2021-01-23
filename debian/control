@@ -1,0 +1,15 @@
+Source: php-tools
+Section: devel
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends: debhelper (>= 9), git, php-cli ,wget
+Standards-Version: 4.3.0
+Homepage: https://github.com/Vitexus/php-tools
+Vcs-Git: git@github.com:Vitexus/php-tools.git
+Vcs-Browser: https://github.com/Vitexus/php-tools
+
+Package: php-tools
+Architecture: all
+Depends: ${misc:Depends},bash,dialog
+Description: additonal php management tools for full value PHP development.
+ active PHP version switcher etc...
