@@ -1,7 +1,7 @@
 php-tools
 ==================
 
-![php-tools](phptools.svg "Package Logo")
+![php-tools](php-tools.svg "Package Logo")
 
 Debian package that contains additonal tools for PHP development using.
 
@@ -32,4 +32,4 @@ Commands included
  * **usephp-7.3** - swith current webserver and commandline php to php7.3
  * **usephp-7.4** - swith current webserver and commandline php to php7.4 
  * **usephp-8.0** - swith current webserver and commandline php to php8.0 
-
+ * **xdebug-mode** - set xdebug mode "debug" or "profile"

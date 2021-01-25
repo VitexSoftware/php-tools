@@ -1,0 +1,15 @@
+#/bin/bash
+
+mode=$1
+
+for inifile in `ls /etc/php/*/mods-available/xdebug.ini`
+do
+    case $mode in
+	"debug" )
+            sudo sed -i '/xdebug.mode/c\xdebug.mode = debug' $inifile ;;
+        "profile" )
+	    sudo sed -i '/xdebug.mode/c\xdebug.mode = profile' $inifile ;;
+        *)
+	    echo "usage: $0 [debug|profile]"  ;;
+    esac
+done
