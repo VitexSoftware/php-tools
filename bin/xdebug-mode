@@ -2,14 +2,28 @@
 
 mode=$1
 
+
+
+setxdebugmode () {
+            sudo sed -i "/xdebug.mode/c\xdebug.mode = $1"  $2
+	    export XDEBUG_MODE=$1
+	    sudo phpenmod xdebug
+	    sudo apache2ctl restart
+}
+
+
 for inifile in `ls /etc/php/*/mods-available/xdebug.ini`
 do
     case $mode in
 	"debug" )
-            sudo sed -i '/xdebug.mode/c\xdebug.mode = debug' $inifile ;;
+	    setxdebugmode $mode $inifile ;;
         "profile" )
-	    sudo sed -i '/xdebug.mode/c\xdebug.mode = profile' $inifile ;;
+	    setxdebugmode $mode $inifile ;;
+        "coverage" )
+	    setxdebugmode $mode $inifile ;;
+	"none" )
+	    sudo phpdismod xdebug ;;
         *)
-	    echo "usage: $0 [debug|profile]"  ;;
+	    echo "usage: $0 [debug|profile|coverage|none]"  ;;
     esac
 done

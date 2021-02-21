@@ -1,5 +1,7 @@
-php-tools (0.1) UNRELEASED; urgency=medium
+php-tools (0.3) UNRELEASED; urgency=medium
 
   * Initial release.
+  * xdebug-mode added
+  * New xdebug mode switch command
 
- -- CyberVitexus <vitex@exiv.jinonice.czf>  Fri, 15 Jan 2021 05:24:14 +0100
+ -- CyberVitexus <vitex@exiv.jinonice.czf>  Sun, 21 Feb 2021 10:12:15 +0100

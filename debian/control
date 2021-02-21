@@ -10,6 +10,6 @@ Vcs-Browser: https://github.com/Vitexus/php-tools
 
 Package: php-tools
 Architecture: all
-Depends: ${misc:Depends},bash,dialog
+Depends: ${misc:Depends},bash,dialog,apt-repo-suryorg
 Description: additonal php management tools for full value PHP development.
  active PHP version switcher etc...
