@@ -13,7 +13,7 @@ setxdebugmode () {
 }
 
 noargs () {
-	    echo "usage: $0 [off|develop|gcstats|debug|profile|trace|coverage|none]"
+	    echo "usage: $0 [off|on|develop|gcstats|debug|profile|trace|coverage|none]"
 }
 
 if [ $# -eq 0 ]; then
@@ -25,6 +25,8 @@ fi
 for inifile in `ls /etc/php/*/mods-available/xdebug.ini`
 do
     case $mode in
+	"on" )
+	    setxdebugmode debug,develop $inifile ;;
 	"off" )
 	    setxdebugmode $mode $inifile ;;
 	"develop" )
