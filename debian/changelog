@@ -1,7 +1,8 @@
-php-tools (0.3) UNRELEASED; urgency=medium
+php-tools (0.4) UNRELEASED; urgency=medium
 
   * Initial release.
   * xdebug-mode added
   * New xdebug mode switch command
+  * Better xdebug mode noargs info
 
- -- CyberVitexus <vitex@exiv.jinonice.czf>  Sun, 21 Feb 2021 10:12:15 +0100
+ -- CyberVitexus <vitex@exiv.jinonice.czf>  Tue, 09 Mar 2021 11:18:53 +0100
