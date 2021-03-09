@@ -1,4 +1,5 @@
 #/bin/bash
+#Mode Switcher for xDebug 3+
 
 mode=$1
 
@@ -11,19 +12,36 @@ setxdebugmode () {
 	    sudo apache2ctl restart
 }
 
+noargs () {
+	    echo "usage: $0 [off|develop|gcstats|debug|profile|trace|coverage|none]"
+}
+
+if [ $# -eq 0 ]; then
+    noargs
+    exit 1
+fi
+
 
 for inifile in `ls /etc/php/*/mods-available/xdebug.ini`
 do
     case $mode in
+	"off" )
+	    setxdebugmode $mode $inifile ;;
+	"develop" )
+	    setxdebugmode $mode $inifile ;;
+	"gcstats" )
+	    setxdebugmode $mode $inifile ;;
 	"debug" )
 	    setxdebugmode $mode $inifile ;;
         "profile" )
+	    setxdebugmode $mode $inifile ;;
+        "trace" )
 	    setxdebugmode $mode $inifile ;;
         "coverage" )
 	    setxdebugmode $mode $inifile ;;
 	"none" )
 	    sudo phpdismod xdebug ;;
         *)
-	    echo "usage: $0 [debug|profile|coverage|none]"  ;;
+	    noargs;;
     esac
 done
