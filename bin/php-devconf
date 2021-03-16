@@ -1,0 +1,12 @@
+#!/bin/bash
+
+CURRENT=`php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];'`
+
+sudo cp /etc/php/$CURRENT/apache2/php.ini /etc/php/$CURRENT/apache2/php.ini.bak
+sudo cp /usr/lib/php/$CURRENT/php.ini-development /etc/php/$CURRENT/apache2/php.ini
+
+sudo cp /etc/php/$CURRENT/cli/php.ini /etc/php/$CURRENT/cli/php.ini.bak
+sudo cp /usr/lib/php/$CURRENT/php.ini-development /etc/php/$CURRENT/cli/php.ini
+
+sudo apache2ctl restart
+
