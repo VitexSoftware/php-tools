@@ -33,3 +33,8 @@ Commands included
  * **usephp-7.4** - swith current webserver and commandline php to php7.4 
  * **usephp-8.0** - swith current webserver and commandline php to php8.0 
  * **xdebug-mode** - set xdebug mode "debug" or "profile"
+
+Or simply usephp to choose from availble versions
+
+![usephp](usephp.png?raw=true)
+
