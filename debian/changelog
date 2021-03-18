@@ -5,5 +5,6 @@ php-tools (0.5) UNRELEASED; urgency=medium
   * New xdebug mode switch command
   * Better xdebug mode noargs info
   * Merge branch 'main' of github.com:VitexSoftware/php-tools into main
+  * Usphp screenshot
 
- -- CyberVitexus <vitex@exiv.jinonice.czf>  Tue, 16 Mar 2021 17:45:22 +0100
+ -- CyberVitexus <vitex@exiv.jinonice.czf>  Thu, 18 Mar 2021 11:07:11 +0100
