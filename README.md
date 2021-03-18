@@ -34,7 +34,33 @@ Commands included
  * **usephp-8.0** - swith current webserver and commandline php to php8.0 
  * **xdebug-mode** - set xdebug mode "debug" or "profile"
 
-Or simply usephp to choose from availble versions
+
+usephp
+------
+
+Simply run **usephp** command to choose from availble versions
 
 ![usephp](usephp.png?raw=true)
+
+
+installphp
+----------
+
+1) Choose PHP versions you want install:
+
+![installphp version chooser](installphp-choose.png?raw=true)
+
+2) Choose packages 
+
+![installphp choose](installphp-check.png?raw=true)
+
+3) Customize selection
+
+![installphp customize](installphp-confirm.png?raw=true)
+
+4) Confirm instalation
+
+![installphp final](installphp-itself.png?raw=true)
+
+
 
