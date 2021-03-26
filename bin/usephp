@@ -1,7 +1,6 @@
 #!/bin/sh
 myver=`echo $0 |  awk '{print substr($0,length-2,4)}'`
 
-
 choices(){
     ALL=`dpkg -l | grep '^ii  php.\..-cli' | awk '{print$2}' | sed 's/-cli//' | sed 's/php//'`
     CURRENT=`php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];'`
@@ -20,13 +19,15 @@ choices(){
 if [ $myver = "php" ]; then
 
 
-DIALOG=${DIALOG=dialog}
-tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
-trap "rm -f $tempfile" 0 1 2 5 15
+  if [ $# -eq 0 ]
+  then
+    DIALOG=${DIALOG=dialog}
+    tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+    trap "rm -f $tempfile" 0 1 2 5 15
 
-$DIALOG --backtitle "PHP Tools" --title "PHP version Switcher" --clear --radiolist "Please choose php version you want switch to" 20 61 5 `choices` 2> $tempfile
+    $DIALOG --backtitle "PHP Tools" --title "PHP version Switcher" --clear --radiolist "Please choose php version you want switch to" 20 61 5 `choices` 2> $tempfile
 
-retval=$?
+    retval=$?
 
     myver=`cat $tempfile`
     case $retval in
@@ -38,7 +39,9 @@ retval=$?
       255)
         exit;;
     esac
-
+  else
+	myver=$1
+  fi
 fi;
 
 

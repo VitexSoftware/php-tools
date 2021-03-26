@@ -1,0 +1,7 @@
+bin/php-devconf
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/php-tools.debhelper.log
+debian/php-tools.substvars
+debian/php-tools/
