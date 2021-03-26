@@ -9,6 +9,7 @@ CURRENT=`php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];'`
 AVAILBLE=`apt-cache search --names-only php | egrep '^php[0-9]\.[0-9] ' | awk '{print $1}' | sort | sed 's/php//g'`
 
 SKIPLIST="php-apcu php-apcu-bc php-gmagick \
+php-yac \
 php5.6-apcu php5.6-apcu-bc php5.6-gmagick \
 php7.0-apcu php7.0-apcu-bc php7.0-gmagick \
 php7.1-apcu php7.1-apcu-bc php7.1-gmagick \

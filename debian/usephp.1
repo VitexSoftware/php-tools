@@ -1,0 +1,32 @@
+.\"Modified from man(1) of FreeBSD, the NetBSD mdoc.template, and mdoc.samples.
+.\"See Also:
+.\"man mdoc.samples for a complete listing of options
+.\"man mdoc for the short list of editing options
+.\"/usr/share/misc/mdoc.template
+.Dd 8/4/10               \" DATE
+.Dt usephp      \" Program name and manual section number
+.Os Darwin
+.Sh USEPHP                 \" Section Header - required - don't modify
+.Nm usephp
+.Nd php version switcher
+.Sh SYNOPSIS             \" Section Header - required - don't modify
+.Nm
+.Op 5.6 | 7.0 | 7.1 | 7.4 | 8.0             \" [-abcd]
+.Sh DESCRIPTION          \" Section Header - required - don't modify
+Works only if php version is installed otherwise use installphp macro.
+.Pp
+Use the usephp command to change your php version easily like such:
+.Pp
+usephp 8.0
+.Pp                      \" Inserts a space
+.Bl -tag -width -indent  \" Begins a tagged list
+.El                      \" Ends the list
+.Pp
+.Bl -tag -width -indent  \" Differs from above in tag removed
+.El                      \" Ends the list
+.Sh SEE ALSO
+.\" List links in ascending order by section, alphabetically within a section.
+.\" Please do not reference files that do not exist without filing a bug report
+.Xr installphp 1 ,
+.Xr xdebug-mode 1 ,
+.Xr phph-devconf 1
