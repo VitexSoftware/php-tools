@@ -1,4 +1,4 @@
-php-tools (0.6) UNRELEASED; urgency=medium
+php-tools (0.7) UNRELEASED; urgency=medium
 
   * Initial release.
   * xdebug-mode added
@@ -7,5 +7,6 @@ php-tools (0.6) UNRELEASED; urgency=medium
   * Merge branch 'main' of github.com:VitexSoftware/php-tools into main
   * Usphp screenshot
   * Dialog based version chooser
+  * Adapted for ubuntu
 
- -- CyberVitexus <vitex@exiv.jinonice.czf>  Thu, 18 Mar 2021 11:07:11 +0100
+ -- CyberVitexus <vitex@exiv.jinonice.czf>  Sat, 27 Mar 2021 00:45:36 +0100
