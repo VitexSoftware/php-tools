@@ -25,20 +25,14 @@ Commands included
  * **installphp** - check current installed php modules and install same modules in other choosen php version
  * **php-modules** - list of avilble php modules
 
- * **usephp-5.6** - swith current webserver and commandline php to php5.6
- * **usephp-7.0** - swith current webserver and commandline php to php7.0
- * **usephp-7.1** - swith current webserver and commandline php to php7.1 
- * **usephp-7.2** - swith current webserver and commandline php to php7.2
- * **usephp-7.3** - swith current webserver and commandline php to php7.3
- * **usephp-7.4** - swith current webserver and commandline php to php7.4 
- * **usephp-8.0** - swith current webserver and commandline php to php8.0 
+ * **usephp** - swith current webserver and commandline php to php5.6
  * **xdebug-mode** - set xdebug mode "debug" or "profile"
-
+ * **php-devconf** - use development version of php.ini
 
 usephp
 ------
 
-Simply run **usephp** command to choose from availble versions
+Specify requested version of PHP as parameter or simply run **usephp** command to choose from availble versions
 
 ![usephp](usephp.png?raw=true)
 
