@@ -6,6 +6,9 @@ mode=$1
 
 
 setxdebugmode () {
+	    if [ `grep xdebug.mode $2 | wc -l` = "0"  ]; then
+		echo xdebug.mode | sudo tee -a $2 > /dev/null
+	    fi
             sudo sed -i "/xdebug.mode/c\xdebug.mode = $1"  $2
 	    export XDEBUG_MODE=$1
 	    sudo phpenmod xdebug
