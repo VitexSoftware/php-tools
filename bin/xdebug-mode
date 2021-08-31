@@ -1,16 +1,33 @@
 #/bin/bash
-#Mode Switcher for xDebug 3+
+#Mode Switcher for xDebug
 
 mode=$1
 
 
-
 setxdebugmode () {
-	    if [ `grep xdebug.mode $2 | wc -l` = "0"  ]; then
-		echo xdebug.mode | sudo tee -a $2 > /dev/null
+
+xdeb=`php --ri xdebug | grep Version | awk '{print  substr($3,0,1)}'`
+
+	    if [ $deb = "3" ]; then
+		if [ `grep xdebug.mode $2 | wc -l` = "0"  ]; then
+		    echo xdebug.mode=debug | sudo tee -a $2 > /dev/null
+		    echo xdebug.client_host=localhost | sudo tee -a $2 > /dev/null
+		    echo xdebug.client_port=9003 | sudo tee -a $2 > /dev/null
+		    echo 'xdebug.idekey="netbeans-xdebug"' | sudo tee -a $2 > /dev/null
+		fi
+		sudo sed -i "/xdebug.mode/c\xdebug.mode = $1"  $2
+		export XDEBUG_MODE=$1
+	    else
+		if [ `grep xdebug.remote_enable $2 | wc -l` = "0"  ]; then
+		    echo xdebug.remote_enable=on | sudo tee -a $2 > /dev/null
+		    echo xdebug.remote_handler=dbgp | sudo tee -a $2 > /dev/null
+		    echo xdebug.client_port=localhost | sudo tee -a $2 > /dev/null
+		    echo xdebug.remote_port=9003 | sudo tee -a $2 > /dev/null
+		    echo xdebug.idekey="netbeans-xdebug" | sudo tee -a $2 > /dev/null
+		fi
 	    fi
-            sudo sed -i "/xdebug.mode/c\xdebug.mode = $1"  $2
-	    export XDEBUG_MODE=$1
+
+
 	    sudo phpenmod xdebug
 	    sudo apache2ctl restart
 }
