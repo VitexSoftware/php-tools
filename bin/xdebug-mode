@@ -6,7 +6,7 @@ mode=$1
 
 setxdebugmode () {
 
-xdeb=`php --ri xdebug | grep Version | awk '{print  substr($3,0,1)}'`
+deb=`php --ri xdebug | grep Version | awk '{print  substr($3,0,1)}'`
 
 	    if [ $deb = "3" ]; then
 		if [ `grep xdebug.mode $2 | wc -l` = "0"  ]; then
