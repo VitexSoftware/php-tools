@@ -16,7 +16,8 @@ php7.1-apcu php7.1-apcu-bc php7.1-gmagick \
 php7.2-apcu php7.2-apcu-bc php7.2-gmagick \
 php7.3-apcu php7.3-apcu-bc php7.3-gmagick \
 php7.4-apcu php7.4-apcu-bc php7.4-gmagick \
-php8.0-apcu php8.0-apcu-bc php8.0-gmagick"
+php8.0-apcu php8.0-apcu-bc php8.0-gmagick \
+php8.1-apcu php8.1-apcu-bc php8.1-gmagick"
 
 OPTIONS=" "
 for VER in $AVAILBLE
