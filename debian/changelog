@@ -1,4 +1,4 @@
-php-tools (0.8) UNRELEASED; urgency=medium
+php-tools (0.9) UNRELEASED; urgency=medium
 
   [ CyberVitexus ]
   * Initial release.
@@ -12,5 +12,6 @@ php-tools (0.8) UNRELEASED; urgency=medium
 
   [ vitex ]
   * php-cgi added to switcher
+  * bash scripts updated
 
- -- vitex <info@vitexsoftware.cz>  Sat, 19 Feb 2022 10:50:59 +0100
+ -- vitex <info@vitexsoftware.cz>  Tue, 19 Sep 2023 22:39:53 +0200

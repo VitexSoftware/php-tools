@@ -1,56 +1,53 @@
 #!/bin/sh
 
-choices(){
-    ALL=`dpkg -l | grep '^ii  php.\..-cli' | awk '{print$2}' | sed 's/-cli//' | sed 's/php//'`
-    CURRENT=`php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];'`
-    for ver in $ALL
-    do
-      if [ $ver = $CURRENT ]; then
-          state='ON'
-      else\
-	  state='off'
-      fi
-      echo "$ver php$ver $state"
-    done
+choices() {
+  ALL=$(dpkg -l | grep '^ii  php.\..-cli' | awk '{print$2}' | sed 's/-cli//' | sed 's/php//')
+  CURRENT=$(php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];')
+  for ver in $ALL; do
+    if [ $ver = $CURRENT ]; then
+      state='ON'
+    else
+      state='off'
+    fi
+    echo "$ver php$ver $state"
+  done
 }
 
+if [ $# -eq 0 ]; then
+  DIALOG=${DIALOG=dialog}
+  tempfile=$(mktemp 2>/dev/null) || tempfile=/tmp/test$$
+  trap "rm -f '$tempfile'" 0 1 2 5 15
 
+  $DIALOG --backtitle "PHP Tools" --title "PHP version Switcher" --clear --radiolist "Please choose php version you want switch to" 20 61 5 $(choices) 2>$tempfile
 
+  retval=$?
 
-  if [ $# -eq 0 ]
-  then
-    DIALOG=${DIALOG=dialog}
-    tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
-    trap "rm -f $tempfile" 0 1 2 5 15
+  myver=$(cat $tempfile)
+  case $retval in
+  0)
+    echo "'$myver' chosen."
+    ;;
+  1)
+    echo "Cancel pressed."
+    exit
+    ;;
+  255)
+    exit
+    ;;
+  esac
+else
+  myver=$1
+fi
 
-    $DIALOG --backtitle "PHP Tools" --title "PHP version Switcher" --clear --radiolist "Please choose php version you want switch to" 20 61 5 `choices` 2> $tempfile
+sudo a2dismod $(dpkg -l | grep '^ii  php.\..-cli' | awk '{print$2}' | sed 's/-cli//')
 
-    retval=$?
-
-    myver=`cat $tempfile`
-    case $retval in
-      0)
-        echo "'$myver' chosen.";;
-      1)
-        echo "Cancel pressed."
-	exit;;
-      255)
-        exit;;
-    esac
-  else
-	myver=$1
-  fi
-
-
-sudo a2dismod `dpkg -l | grep '^ii  php.\..-cli' | awk '{print$2}' | sed 's/-cli//'`
-
-sudo a2enmod php${myver}
+sudo a2enmod php"${myver}"
 sudo update-alternatives --set php /usr/bin/php${myver}
-sudo update-alternatives --set phar /usr/bin/phar${myver}
-sudo update-alternatives --set phar.phar /usr/bin/phar.phar${myver}
-sudo update-alternatives --set phpize /usr/bin/phpize${myver}
-sudo update-alternatives --set libphp /usr/lib/libphp${myver}.so
-sudo update-alternatives --set php-config /usr/bin/php-config${myver}
-sudo update-alternatives --set php-cgi /usr/bin/php-cgi${myver}
+sudo update-alternatives --set phar /usr/bin/phar"${myver}"
+sudo update-alternatives --set phar.phar /usr/bin/phar.phar"${myver}"
+sudo update-alternatives --set phpize /usr/bin/phpize"${myver}"
+sudo update-alternatives --set libphp /usr/lib/libphp"${myver}".so
+sudo update-alternatives --set php-config /usr/bin/php-config"${myver}"
+sudo update-alternatives --set php-cgi /usr/bin/php-cgi"${myver}"
 systemctl restart apache2
 php -v

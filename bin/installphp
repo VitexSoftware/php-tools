@@ -5,8 +5,8 @@ strstr() {
   return 0
 }
 
-CURRENT=`php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];'`
-AVAILBLE=`apt-cache search --names-only php | egrep '^php[0-9]\.[0-9] ' | awk '{print $1}' | sort | sed 's/php//g'`
+CURRENT=$(php -r '$v=explode(".", PHP_VERSION); echo $v[0].".".$v[1];')
+AVAILBLE=$(apt-cache search --names-only php | egrep '^php[0-9]\.[0-9] ' | awk '{print $1}' | sort | sed 's/php//g')
 
 SKIPLIST="php-apcu php-apcu-bc php-gmagick \
 php-yac \
@@ -26,14 +26,14 @@ do
 done
 
 cmd=(dialog --stdout --no-items --separate-output --ok-label "Search for packages" --checklist "PHP Versions to Install:" 22 76 16)
-TOINSTALL=$("${cmd[@]}" ${OPTIONS})
+TOINSTALL=$("${cmd[@]}" "${OPTIONS}")
 
-INSTALLED=`apt-cache search php${CURRENT} | awk '{print $1}' | grep ${CURRENT}`
+INSTALLED=$(apt-cache search php"${CURRENT}" | awk '{print $1}' | grep ${CURRENT})
 
 CANDIDATES=""
 
-CANDIDCOUNT=`echo $INSTALLED | wc -w`
-AVAILCOUNT=`echo $TOINSTALL | wc -w`;
+CANDIDCOUNT=$(echo "$INSTALLED" | wc -w)
+AVAILCOUNT=$(echo "$TOINSTALL" | wc -w);
 
 let "ALLCANDIDATESCOUNT = $CANDIDCOUNT * $AVAILCOUNT"
 
@@ -44,12 +44,12 @@ do
     echo check availble packages for $VERSION_TO_INSTALL
     for MUSTR in $INSTALLED
     do
-	CANDIDAT=`echo ${MUSTR} | sed "s/\$CURRENT/$VERSION_TO_INSTALL/g"`
+	CANDIDAT=$(echo ${MUSTR} | sed "s/\$CURRENT/$VERSION_TO_INSTALL/g")
 	PACKAGENO=$((PACKAGENO+1))
 
 	awk "BEGIN { pc=100*${PACKAGENO}/${ALLCANDIDATESCOUNT}; i=int(pc); print (pc-i<0.5)?i:i+1 }" | dialog --gauge "Checking for $CANDIDAT" 10 70 0
 
-	if ! `apt-cache pkgnames | grep -q "\<$CANDIDAT\>"`; then
+	if ! $(apt-cache pkgnames | grep -q "\<$CANDIDAT\>"); then
 	    echo $CANDIDAT is not availble
 	else
 		if [[ $SKIPLIST == *"$CANDIDAT"* ]] ; then

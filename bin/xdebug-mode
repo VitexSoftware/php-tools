@@ -1,69 +1,75 @@
-#/bin/bash
+#!/bin/bash
 #Mode Switcher for xDebug
 
 mode=$1
 
+setxdebugmode() {
 
-setxdebugmode () {
+	deb=$(php --ri xdebug | grep Version | awk '{print  substr($3,0,1)}')
 
-deb=`php --ri xdebug | grep Version | awk '{print  substr($3,0,1)}'`
-
-	    if [ $deb = "3" ]; then
-		if [ `grep xdebug.mode $2 | wc -l` = "0"  ]; then
-		    echo xdebug.mode=debug | sudo tee -a $2 > /dev/null
-		    echo xdebug.client_host=localhost | sudo tee -a $2 > /dev/null
-		    echo xdebug.client_port=9003 | sudo tee -a $2 > /dev/null
-		    echo 'xdebug.idekey="netbeans-xdebug"' | sudo tee -a $2 > /dev/null
+	if [[ $deb = "3" ]]; then
+		if [[ $(grep -c xdebug.mode "$2" ) = "0" ]]; then
+			echo xdebug.mode=debug | sudo tee -a "$2" >/dev/null
+			echo xdebug.client_host=localhost | sudo tee -a "$2" >/dev/null
+			echo xdebug.client_port=9003 | sudo tee -a "$2" >/dev/null
+			echo 'xdebug.idekey="netbeans-xdebug"' | sudo tee -a "$2" >/dev/null
 		fi
-		sudo sed -i "/xdebug.mode/c\xdebug.mode = $1"  $2
+		sudo sed -i "/xdebug.mode/c\xdebug.mode = $1" "$2"
 		export XDEBUG_MODE=$1
-	    else
-		if [ `grep xdebug.remote_enable $2 | wc -l` = "0"  ]; then
-		    echo xdebug.remote_enable=on | sudo tee -a $2 > /dev/null
-		    echo xdebug.remote_handler=dbgp | sudo tee -a $2 > /dev/null
-		    echo xdebug.client_port=localhost | sudo tee -a $2 > /dev/null
-		    echo xdebug.remote_port=9003 | sudo tee -a $2 > /dev/null
-		    echo xdebug.idekey="netbeans-xdebug" | sudo tee -a $2 > /dev/null
+	else
+		if [[ $(grep -c xdebug.remote_enable "$2" ) = "0" ]]; then
+			echo xdebug.remote_enable=on | sudo tee -a "$2" >/dev/null
+			echo xdebug.remote_handler=dbgp | sudo tee -a "$2" >/dev/null
+			echo xdebug.client_port=localhost | sudo tee -a "$2" >/dev/null
+			echo xdebug.remote_port=9003 | sudo tee -a "$2" >/dev/null
+			echo xdebug.idekey="netbeans-xdebug" | sudo tee -a "$2" >/dev/null
 		fi
-	    fi
+	fi
 
-
-	    sudo phpenmod xdebug
-	    sudo apache2ctl restart
+	sudo phpenmod xdebug
+	sudo apache2ctl restart
 }
 
-noargs () {
-	    echo "usage: $0 [off|on|develop|gcstats|debug|profile|trace|coverage|none]"
+noargs() {
+	echo "usage: $0 [off|on|develop|gcstats|debug|profile|trace|coverage|none]"
 }
 
 if [ $# -eq 0 ]; then
-    noargs
-    exit 1
+	noargs
+	exit 1
 fi
 
-
-for inifile in `ls /etc/php/*/mods-available/xdebug.ini`
-do
-    case $mode in
-	"on" )
-	    setxdebugmode debug,develop $inifile ;;
-	"off" )
-	    setxdebugmode $mode $inifile ;;
-	"develop" )
-	    setxdebugmode $mode $inifile ;;
-	"gcstats" )
-	    setxdebugmode $mode $inifile ;;
-	"debug" )
-	    setxdebugmode $mode $inifile ;;
-        "profile" )
-	    setxdebugmode $mode $inifile ;;
-        "trace" )
-	    setxdebugmode $mode $inifile ;;
-        "coverage" )
-	    setxdebugmode $mode $inifile ;;
-	"none" )
-	    sudo phpdismod xdebug ;;
-        *)
-	    noargs;;
-    esac
+for inifile in $(ls /etc/php/*/mods-available/xdebug.ini); do
+	case $mode in
+	"on")
+		setxdebugmode debug,develop $inifile
+		;;
+	"off")
+		setxdebugmode $mode $inifile
+		;;
+	"develop")
+		setxdebugmode $mode $inifile
+		;;
+	"gcstats")
+		setxdebugmode $mode $inifile
+		;;
+	"debug")
+		setxdebugmode $mode $inifile
+		;;
+	"profile")
+		setxdebugmode $mode $inifile
+		;;
+	"trace")
+		setxdebugmode $mode $inifile
+		;;
+	"coverage")
+		setxdebugmode $mode $inifile
+		;;
+	"none")
+		sudo phpdismod xdebug
+		;;
+	*)
+		noargs
+		;;
+	esac
 done
