@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>io.github.vitexsoftware.php_tools</id>
+  
+  <name>php tools</name>
+  <summary>Various tools for development using PHP</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  
+  <description>
+    <p>
+      xdebug-mode manage xdebug usephp - switch current php version installphp - install new verison of php with same set of packages like current phpver - print current php version etc ...
+    </p>
+  </description>
+  
+  <icon type="stock">php-tools</icon>
+  
+  <categories>
+    <category>Development</category>
+    <category>Amusement</category>
+  </categories>
+  
+  <provides>
+    <binary>add-sury-debian-sources</binary>
+    <binary>disable-all-php-modules</binary>
+    <binary>installphp</binary>
+    <binary>php-devconf</binary>
+    <binary>php-modules</binary>
+    <binary>phpver</binary>
+    <binary>usephp</binary>
+    <binary>xdebug-mode</binary>
+  </provides>
+</component>
