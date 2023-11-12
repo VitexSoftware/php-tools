@@ -39,31 +39,31 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-for inifile in $(ls /etc/php/*/mods-available/xdebug.ini); do
+for inifile in /etc/php/*/mods-available/xdebug.ini; do
 	case $mode in
 	"on")
-		setxdebugmode debug,develop $inifile
+		setxdebugmode debug,develop,coverage "$inifile"
 		;;
 	"off")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"develop")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"gcstats")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"debug")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"profile")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"trace")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"coverage")
-		setxdebugmode $mode $inifile
+		setxdebugmode "$mode" "$inifile"
 		;;
 	"none")
 		sudo phpdismod xdebug
