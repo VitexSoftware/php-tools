@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.vitexsoftware.php_tools</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>php-tools</name>
+  <summary>additonal php management tools for full value PHP development.</summary>
+  <description>
+    <p>
+      active PHP version switcher etc...
+    </p>
+  </description>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <url type="homepage">https://github.com/VitexSoftware/php-tools</url>
+  <url type="bugtracker">https://github.com/VitexSoftware/php-tools/issues</url>
+  <developer id="cz.vitexsoftware">
+    <name>VitexSoftware</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+</component>
